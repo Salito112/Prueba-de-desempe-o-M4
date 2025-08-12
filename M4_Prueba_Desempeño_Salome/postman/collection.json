@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "financial-data-management-system",
+		"name": "Financial Data Management System - ExpertSoft",
+		"description": "Complete API collection for the Financial Data Management System developed for ExpertSoft. This collection includes all CRUD operations for clients, advanced financial queries, and data loading endpoints.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12345678"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "API Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"health"
+							]
+						},
+						"description": "Check the health status of the API and database connection"
+					},
+					"response": []
+				}
+			],
+			"description": "Health check endpoints to verify system status"
+		},
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "Get All Clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients"
+							]
+						},
+						"description": "Retrieve all clients from the database"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						},
+						"description": "Retrieve a specific client by their ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/search?q=Juan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Juan",
+									"description": "Search term for clients"
+								}
+							]
+						},
+						"description": "Search clients by name, code, email, or city"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client Statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/statistics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"statistics"
+							]
+						},
+						"description": "Get statistics about clients (total, active, inactive, etc.)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_code\": \"CLI011\",\n    \"first_name\": \"Ana\",\n    \"last_name\": \"Garcia\",\n    \"email\": \"ana.garcia@email.com\",\n    \"phone\": \"3001234567\",\n    \"address\": \"Calle 45 #67-89\",\n    \"city\": \"Bogotá\",\n    \"department\": \"Cundinamarca\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients"
+							]
+						},
+						"description": "Create a new client in the system"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_code\": \"CLI011\",\n    \"first_name\": \"Ana Maria\",\n    \"last_name\": \"Garcia Lopez\",\n    \"email\": \"ana.garcia@email.com\",\n    \"phone\": \"3001234567\",\n    \"address\": \"Calle 45 #67-89\",\n    \"city\": \"Bogotá\",\n    \"department\": \"Cundinamarca\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						},
+						"description": "Update an existing client's information"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Client (Soft Delete)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						},
+						"description": "Soft delete a client (sets is_active to false)"
+					},
+					"response": []
+				},
+				{
+					"name": "Hard Delete Client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/1/hard",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1",
+								"hard"
+							]
+						},
+						"description": "Permanently delete a client from the database"
+					},
+					"response": []
+				}
+			],
+			"description": "Client management endpoints for CRUD operations"
+		},
+		{
+			"name": "Advanced Queries",
+			"item": [
+				{
+					"name": "Total Payments by Client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/queries/total-payments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"queries",
+								"total-payments"
+							]
+						},
+						"description": "Get the total amount paid by each client with transaction details"
+					},
+					"response": []
+				},
+				{
+					"name": "Pending Invoices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/queries/pending-invoices",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"queries",
+								"pending-invoices"
+							]
+						},
+						"description": "Get all pending invoices with client and transaction information"
+					},
+					"response": []
+				},
+				{
+					"name": "Transactions by Platform (All)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/queries/transactions-by-platform",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"queries",
+								"transactions-by-platform"
+							]
+						},
+						"description": "Get all transactions grouped by platform"
+					},
+					"response": []
+				},
+				{
+					"name": "Transactions by Platform (Filtered)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/queries/transactions-by-platform?platform=Nequi",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"queries",
+								"transactions-by-platform"
+							],
+							"query": [
+								{
+									"key": "platform",
+									"value": "Nequi",
+									"description": "Filter transactions by specific platform"
+								}
+							]
+						},
+						"description": "Get transactions filtered by a specific platform (Nequi, Daviplata, etc.)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available Platforms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/queries/platforms",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"queries",
+								"platforms"
+							]
+						},
+						"description": "Get list of available payment platforms with statistics"
+					},
+					"response": []
+				}
+			],
+			"description": "Advanced financial queries for reporting and analysis"
+		},
+		{
+			"name": "Data Loader",
+			"item": [
+				{
+					"name": "Upload CSV File",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "csvFile",
+									"type": "file",
+									"src": [],
+									"description": "CSV file with financial data"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/data-loader/upload",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"data-loader",
+								"upload"
+							]
+						},
+						"description": "Upload and process a CSV file with financial data"
+					},
+					"response": []
+				},
+				{
+					"name": "Load Sample Data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/data-loader/load-sample",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"data-loader",
+								"load-sample"
+							]
+						},
+						"description": "Load sample financial data for testing purposes"
+					},
+					"response": []
+				}
+			],
+			"description": "Data loading endpoints for bulk data import"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string",
+			"description": "Base URL for the API server"
+		}
+	]
+}
+
