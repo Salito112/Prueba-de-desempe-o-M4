@@ -38,7 +38,7 @@ SHOW DATABASES;
 ### 2. Import Database Schema
 ```bash
 # Navigate to the project directory
-cd desempeño
+cd M4_Prueba_Desempeno_Salome
 
 # Import the schema
 mysql -u root -p pd_salome_gonzalez_clan < database/schema.sql
@@ -335,4 +335,5 @@ If you encounter issues:
 5. Test with the provided sample data
 
 For additional support, refer to the documentation in the `docs/` folder.
+
 
